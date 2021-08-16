@@ -41,7 +41,7 @@ spec:
         app: grafana
     spec:
       nodeSelector:
-        kubernetes.io/hostname: jonschmi-ubus
+        node-role.kubernetes.io/master: ""
       containers:
         - name: grafana
           image: grafana/grafana:6.3.3

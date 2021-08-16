@@ -1,30 +1,29 @@
----
-apiVersion: devices.kubeedge.io/v1alpha1
+apiVersion: devices.kubeedge.io/v1alpha2
 kind: Device
 metadata:
-        name: cpu-sensor-tag01
-        labels:
-                description: CPU-Sensor
-                model: cpu-sensor
+  name: cpu-sensor-tag01
+  labels:
+    description: 'CPU-Sensor'
+    model: cpu-sensor
 spec:
-        deviceModelRef:
-                name: cpu-sensor
-        nodeSelector:
-                nodeSelectorTerms:
-                        - matchExpressions:
-                                  - key: ''
-                                    operator: IN
-                                    values:
-                                            - edge
+  deviceModelRef:
+    name: cpu-sensor
+  nodeSelector:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: ''
+            operator: In
+            values:
+              - edge1
 status:
-        twins:
-                - propertyName: CPU_Temperatur
-                  reported:
-                          value: "0"
-                          metadata:
-                                  type: int
-                - propertyName: cpu_id
-                  reported:
-                          value: "0"
-                          metadata:
-                                  type: int
+  twins:
+    - propertyName: CPU_Temperatur
+      reported:
+        value: "0"
+        metadata:
+          type: int
+    - propertyName: cpu_id
+      reported:
+        value: "0"
+        metadata:
+          type: int

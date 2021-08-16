@@ -70,7 +70,7 @@ spec:
         kubeedge: kubeedge-database
     spec:
       nodeSelector:
-        kubernetes.io/hostname: jonschmi-ubus
+        node-role.kubernetes.io/master: ""
       initContainers:
         - name: kubeconfig
           image: alpine:3.10

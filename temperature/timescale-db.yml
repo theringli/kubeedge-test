@@ -35,7 +35,7 @@ spec:
         app: timescale
     spec:
       nodeSelector: 
-        kubernetes.io/hostname: jonschmi-ubus
+        node-role.kubernetes.io/master: ""
       containers:
       - name: timescale
         image: timescale/timescaledb:1.4.1-pg11
