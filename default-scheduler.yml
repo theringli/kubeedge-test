@@ -1,0 +1,16 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: config.openshift.io/v1
+kind: Scheduler
+metadata:
+  name: cluster
+  selfLink: /apis/config.openshift.io/v1/schedulers/cluster
+  uid: e754890e-e47e-4fd0-9bc0-cf3bc3898c8b
+spec:
+  mastersSchedulable: true
+  policy:
+    name: ""
+#  defaultNodeSelector: zone=core
+status: {}

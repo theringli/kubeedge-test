@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: timescale-rootpw
+type: Opaque
+stringData:
+  password: changeme
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: timescale
+spec:
+  selector:
+    app: timescale
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+      name: postgres
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timescale
+  labels:
+    app: timescale
+spec:
+  selector:
+    matchLabels:
+      app: timescale
+  template:
+    metadata:
+      labels:
+        app: timescale
+    spec:
+      containers:
+      - name: timescale
+        image: timescale/timescaledb:1.4.1-pg11
+        env:
+        - name: POSTGRESQL_PORT_NUMBER
+
+          value: "5432"
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: timescale-rootpw
+              key: password
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+          name: postgres
