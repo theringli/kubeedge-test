@@ -1,0 +1,21 @@
+---
+apiVersion: devices.kubeedge.io/v1alpha1
+kind: DeviceModel
+metadata:
+        label:
+                description: CPU-Sensor
+        name: cpu-sensor
+spec:
+        properties:
+                - name: CPU_Temperatur
+                  description: temperatur in degree celsius
+                  type:
+                          int:
+                                  accessMode: ReadOnly
+                                  unit: Degree Celsius
+                - name: cpu_id
+                  description: set the id of the cpu
+                  type:
+                          int:
+                                  accessMode: ReadWrite
+                                  defaultValue: 0
