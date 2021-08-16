@@ -22,7 +22,7 @@ func init() {
 	flag.StringVar(&deviceID, "deviceID", "cpu-sensor-tag01", "The unique ID of this device (created in the cloud)")
 	flag.StringVar(&user, "user", "", "User to connect to the MQTT broker")
 	flag.StringVar(&password, "password", "", "Password for the MQTT Broker")
-	flag.BoolVar(&simulate, "simulate", false, "if you use this flag the input data will be simulated by random numbers and no sensor will be requested")
+	flag.BoolVar(&simulate, "simulate", true, "if you use this flag the input data will be simulated by random numbers and no sensor will be requested")
 }
 
 func main() {
