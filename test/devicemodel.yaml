@@ -1,36 +1,12 @@
-apiVersion: devices.kubeedge.io/v1alpha1
+apiVersion: devices.kubeedge.io/v1alpha2
 kind: DeviceModel
 metadata:
-  name: switch-model
+  name: testdevice-model
   namespace: default
 spec:
   properties:
-    - name: consumption
-      description: ' ' 
-      type:
-        string:
-          accessMode: ReadOnly
-          defaultValue: ''
-    - name: linkquality
-      description: ' '
-      type:
-        string:
-          accessMode: ReadOnly
-          defaultValue: ''
-    - name: power
-      description: ' '
-      type:
-        string:
-          accessMode: ReadOnly
-          defaultValue: ''
-    - name: state
-      description: The state of zigbee switch
-      type:
-        string:
-          accessMode: ReadWrite
-          defaultValue: 'OFF'
-    - name: temperature
-      description: ' '
+    - name: testdevice-status
+      description: testdevice-status
       type:
         string:
           accessMode: ReadOnly

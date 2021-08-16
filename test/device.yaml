@@ -1,23 +1,23 @@
 apiVersion: devices.kubeedge.io/v1alpha1
 kind: Device
 metadata:
-  name: switch
+  name: testdevice
   labels:
-    description: 'switch'
-    manufacturer: 'ai_demo'
+    description: 'testdevice'
+    manufacturer: 'testdevice'
 spec:
   deviceModelRef:
-    name: switch-model
+    name: testdevice-model
   nodeSelector:
     nodeSelectorTerms:
       - matchExpressions:
           - key: ''
             operator: In
             values:
-              - edge-node1
+              - edge1
 status:
   twins:
-    - propertyName: state
+    - propertyName: testdevice-status
       desired:
         metadata:
           type: string
