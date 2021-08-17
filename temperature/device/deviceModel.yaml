@@ -1,5 +1,4 @@
-
-apiVersion: devices.kubeedge.io/v1alpha2
+apiVersion: devices.kubeedge.io/v1alpha1
 kind: DeviceModel
 metadata:
   label: 
