@@ -106,7 +106,7 @@ spec:
             EOF
       containers:
       - name: kubeedge-database
-        image: kubeedge-database:latest
+        image: theringli/kubeedge-test:latest
         imagePullPolicy: Always
         env:
           - name: DATABASE-USER
