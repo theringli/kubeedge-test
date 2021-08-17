@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/kubeedge/kubeedge/cloud/pkg/apis/devices/v1alpha1"
+	"github.com/kubeedge/kubeedge/cloud/pkg/apis/devices/v1alpha2"
 
 	"github.com/subpathdev/kubeedge-database/database"
 	"github.com/subpathdev/kubeedge-database/kubernetes"
@@ -72,9 +72,9 @@ func main() {
 func handleKube(event chan watch.Event, db database.Database) {
 	for {
 		ev := <-event
-		dev, ok := ev.Object.(*v1alpha1.Device)
+		dev, ok := ev.Object.(*v1alpha2.Device)
 		if !ok {
-			klog.Errorf("could not convert event data to KubeEdge v1alpha1.Device")
+			klog.Errorf("could not convert event data to KubeEdge v1alpha2.Device")
 			continue
 		}
 		switch ev.Type {
