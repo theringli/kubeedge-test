@@ -1,7 +1,7 @@
 package kubernetes
 
 import (
-	"github.com/kubeedge/kubeedge/cloud/pkg/apis/devices/v1alpha1"
+	"github.com/kubeedge/kubeedge/cloud/pkg/apis/devices/v1alpha2"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/fields"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -46,8 +46,8 @@ func (r ResourceEventHandler) OnDelete(obj interface{}) {
 var kubernetesRestClient *rest.RESTClient
 
 func createScheme(schem *runtime.Scheme) error {
-	schem.AddKnownTypes(schema.GroupVersion{Group: "devices.kubeedge.io", Version: "v1alpha1"}, &v1alpha1.Device{}, &v1alpha1.DeviceList{})
-	metav1.AddToGroupVersion(schem, schema.GroupVersion{Group: "devices.kubeedge.io", Version: "v1alpha1"})
+	schem.AddKnownTypes(schema.GroupVersion{Group: "devices.kubeedge.io", Version: "v1alpha2"}, &v1alpha2.Device{}, &v1alpha2.DeviceList{})
+	metav1.AddToGroupVersion(schem, schema.GroupVersion{Group: "devices.kubeedge.io", Version: "v1alpha2"})
 	return nil
 }
 
@@ -70,7 +70,7 @@ func Init(k8sServer, configPath string, event chan watch.Event) error {
 
 	conf.ContentType = runtime.ContentTypeJSON
 	conf.APIPath = "/apis"
-	conf.GroupVersion = &schema.GroupVersion{Group: "devices.kubeedge.io", Version: "v1alpha1"}
+	conf.GroupVersion = &schema.GroupVersion{Group: "devices.kubeedge.io", Version: "v1alpha2"}
 	conf.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: serializer.NewCodecFactory(schem)}
 
 	kubernetesRestClient, err = rest.RESTClientFor(conf)
@@ -79,13 +79,13 @@ func Init(k8sServer, configPath string, event chan watch.Event) error {
 		return err
 	}
 
-	var dev v1alpha1.Device
+	var dev v1alpha2.Device
 	lw := cache.NewListWatchFromClient(kubernetesRestClient, "devices", "kubeedge", fields.Everything())
 	si := cache.NewSharedInformer(lw, &dev, 0)
 	reh := ResourceEventHandler{events: event}
 	si.AddEventHandler(reh)
 
-	klog.Infof("value of v1alpha1: %v\n", dev)
+	klog.Infof("value of v1alpha2: %v\n", dev)
 
 	stopNever := make(chan struct{})
 	go si.Run(stopNever)
