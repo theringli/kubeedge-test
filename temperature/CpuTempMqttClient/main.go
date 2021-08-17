@@ -18,7 +18,7 @@ var simulate bool
 
 func init() {
 	//	flag := flag.NewFlagSet("Usage", flag.ExitOnError)
-	flag.StringVar(&mqttURL, "mqttURL", "tcp://192.167.178.114:1883", "URL to the MQTT Broker")
+	flag.StringVar(&mqttURL, "mqttURL", "tcp://192.168.178.114:1883", "URL to the MQTT Broker")
 	flag.StringVar(&deviceID, "deviceID", "cpu-sensor-tag01", "The unique ID of this device (created in the cloud)")
 	flag.StringVar(&user, "user", "", "User to connect to the MQTT broker")
 	flag.StringVar(&password, "password", "", "Password for the MQTT Broker")
