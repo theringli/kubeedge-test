@@ -3,7 +3,7 @@
 package kubeClient
 
 import (
-//	"crypto/tls"
+	"crypto/tls"
 	"encoding/json"
 	"log"
 	"strconv"
@@ -92,14 +92,14 @@ var cpu_id string
 // mqttConfig creates the mqtt client config
 func mqttConfig(server, clientID, user, password string) *MQTT.ClientOptions {
 	options := MQTT.NewClientOptions().AddBroker(server).SetClientID(clientID).SetCleanSession(true)
-//	if user != "" {
-//		options.SetUsername(user)
-//		if password != "" {
-//			options.SetPassword(password)
-//		}
-//	}
-//	tlsConfig := &tls.Config{InsecureSkipVerify: true, ClientAuth: tls.NoClientCert}
-//	options.SetTLSConfig(tlsConfig)
+	if user != "" {
+		options.SetUsername(user)
+		if password != "" {
+			options.SetPassword(password)
+		}
+	}
+	tlsConfig := &tls.Config{InsecureSkipVerify: true, ClientAuth: tls.NoClientCert}
+	options.SetTLSConfig(tlsConfig)
 	return options
 }
 
