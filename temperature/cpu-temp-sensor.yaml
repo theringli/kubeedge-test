@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-sensor1
+  labels:
+    app: cpu-sensor1
+spec:
+  selector:
+    matchLabels:
+      app: cpu-sensor1
+  template:
+    metadata:
+      labels:
+        app: cpu-sensor1
+    spec:
+      nodeSelector: 
+        node-role.kubernetes.io/edge: ""
+      containers:
+      - name: cpu-sensor1
+        image: theringli/cpu-temp-client:latest
+        args:
+          - "--mqttURL=tcp://192.168.178.114:1883"
+          - "--deviceID=cpu-sensor-tag01"
+          - "--simulate=true"
+#          - "--user="
+#          - "--password="
