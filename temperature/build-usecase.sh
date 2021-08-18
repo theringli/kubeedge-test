@@ -4,7 +4,7 @@ case $1 in
         kubectl apply -f timescale-db.yml
         while [ $(kubectl get pods | grep timescale | awk '{ print $2;}') != "1/1" ]
         do
-            sleep 5
+            sleep 10
         done
         POD_NAME=$(kubectl get po -l app=timescale -o jsonpath='{.items[0].metadata.name}')
         kubectl exec -ti ${POD_NAME} -- psql -h 127.0.0.1 -p 5432 -U postgres -c "CREATE ROLE kubeedge WITH LOGIN PASSWORD 'kubeedge'; CREATE ROLE grafana WITH LOGIN PASSWORD 'grafana';"

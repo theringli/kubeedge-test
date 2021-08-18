@@ -31,3 +31,6 @@ Passwort = kubeedge<br>
 SSL-Mode = disable<br>
 
 Add dashboard with _Devices.json_ and _Sensors.json_ (left side press plus and import)
+
+# Debug Section
+kubectl exec $(kubectl get po -l app=timescale -o jsonpath='{.items[0].metadata.name}') -it -- psql -U kubeedge --password demo
