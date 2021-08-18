@@ -11,8 +11,8 @@ case $1 in
         kubectl exec -ti ${POD_NAME} -- psql -U postgres -c "CREATE DATABASE grafana WITH OWNER grafana"
         kubectl exec -ti ${POD_NAME} -- psql -U postgres -c "CREATE DATABASE demo WITH OWNER kubeedge"
         kubectl apply -f grafana.yml
-        kubectl apply -f deviceModel.yaml
-        kubectl apply -f deviceInstance.yaml
+        kubectl apply -f device/deviceModel.yaml
+        kubectl apply -f device/deviceInstance.yaml
         kubectl apply -f kubeedge-database.yml
         kubectl apply -f cpu-temp-sensor.yaml
         ;;
@@ -20,8 +20,8 @@ case $1 in
     delete)
         kubectl delete -f timescale-db.yml
         kubectl delete -f grafana.yml
-        kubectl delete -f deviceModel.yaml
-        kubectl delete -f deviceInstance.yaml
+        kubectl delete -f device/deviceModel.yaml
+        kubectl delete -f device/deviceInstance.yaml
         kubectl delete -f kubeedge-database.yml
         kubectl delete -f cpu-temp-sensor.yaml
         ;;
