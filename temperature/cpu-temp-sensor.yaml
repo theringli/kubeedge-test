@@ -1,31 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cpu-temp-client
+  name: sensor-deployment
   labels:
-    app: cpu-temp-client
+    app: sensor
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cpu-temp-client
+      app: sensor
   template:
     metadata:
       labels:
-        app: cpu-temp-client
-    spec:
+        app: sensor
+    spec: # Hiermit werden alle EdgeNodes selektiert
+      automountServiceAccountToken: false
       nodeSelector:
         node-role.kubernetes.io/edge: ""
       tolerations: # Mit dieser Toleration wird das Taint ignoriert
       - effect: NoSchedule
         key: node-role.kubeedge.io
-        value: edged
+        value: edge
       containers:
-      - name: cpu-temp-client
+      - name: sensor
         image: theringli/cpu-temp-client:latest
-        args:
-          - "--mqttURL=tcp://192.168.178.114:1883"
-          - "--deviceID=cpu-sensor-tag01"
-          - "--simulate=true"
-          # - "--user="
-          # - "--password="
+        # args:
+        #   - "--mqttURL=tcp://192.168.178.114:1883"
+        #   - "--deviceID=cpu-sensor-tag01"
+        #   - "--simulate=true"
+        #   - "--user="
+        #   - "--password="
