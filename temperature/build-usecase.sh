@@ -2,7 +2,7 @@
 case $1 in
     build)
         kubectl apply -f timescale-db.yml
-        while [ $(kubectl get pods | grep timescale | awk '{ print $3;}') != "Running" ]
+        while [ $(kubectl get pods | grep timescale | awk '{ print $2;}') != "1/1" ]
         do
             sleep 5
         done
