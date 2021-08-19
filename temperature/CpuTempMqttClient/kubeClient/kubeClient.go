@@ -139,6 +139,7 @@ func syncToCloud(message DeviceTwinUpdate) {
 	if err != nil {
 		log.Println("syncToCoud marshal error is: ", err)
 	}
+	log.Printf("updateMessage json: " + json.UnMarshal(messageBody))
 	token_client = client.Publish(topic, 0, false, messageBody)
 	if token_client.Wait() && token_client.Error() != nil {
 		log.Println("client.publish() erro in device twin update to cloud is: ", token_client.Error())
@@ -163,10 +164,6 @@ func createActualUpdateMessage(actualValue string) DeviceTwinUpdate {
 func Update(value string) {
 	log.Println("Syncing to edge")
 	updateMessage := createActualUpdateMessage(value)
-	var jsonMessage DeviceTwinUpdate
-	jsonMessage = json.Marshal(updateMessage)
-	log.Printf("updateMessage: %v", updateMessage)
-	log.Printf("updateMessage json: %v", jsonMessage)
 	changeTwinValue(updateMessage)
 	time.Sleep(2 * time.Second)
 	log.Println("Syncing to cloud")

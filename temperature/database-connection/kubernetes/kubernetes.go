@@ -80,7 +80,7 @@ func Init(k8sServer, configPath string, event chan watch.Event) error {
 	}
 
 	var dev v1alpha2.Device
-	lw := cache.NewListWatchFromClient(kubernetesRestClient, "devices", "kubeedge", fields.Everything())
+	lw := cache.NewListWatchFromClient(kubernetesRestClient, "devices", "default", fields.Everything())
 	si := cache.NewSharedInformer(lw, &dev, 0)
 	reh := ResourceEventHandler{events: event}
 	si.AddEventHandler(reh)
