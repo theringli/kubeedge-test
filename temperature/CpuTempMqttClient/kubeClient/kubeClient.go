@@ -163,7 +163,9 @@ func createActualUpdateMessage(actualValue string) DeviceTwinUpdate {
 func Update(value string) {
 	log.Println("Syncing to edge")
 	updateMessage := createActualUpdateMessage(value)
+	jsonMessage = json.Marshal(updateMessage)
 	log.Printf("updateMessage: %v", updateMessage)
+	log.Printf("updateMessage json: %v", jsonMessage)
 	changeTwinValue(updateMessage)
 	time.Sleep(2 * time.Second)
 	log.Println("Syncing to cloud")
