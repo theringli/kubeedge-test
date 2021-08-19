@@ -22,7 +22,6 @@ func NewDatabase(dbname, user, host, password, sslmode, schema string, port int,
 	if err != nil {
 		return Database{}, err
 	}
-
 	data := Database{
 		db: d,
 	}
@@ -65,12 +64,14 @@ func (d Database) Close() error {
 
 // Insert will insert data into a database table
 func (d Database) Insert(time t.Time, value, device, namespace, sensor string, active bool) error {
+	klog.Infof("handle added event")
 	_, err := d.preparedInsert.Exec(time, value, device, namespace, sensor, active)
 	return err
 }
 
 // Delete will delete a database table
 func (d Database) Delete(device, namespace string) error {
+	klog.Infof("handle added event")
 	_, err := d.preparedDelete.Exec(namespace, device)
 	return err
 }

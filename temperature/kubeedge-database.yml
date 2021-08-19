@@ -90,6 +90,7 @@ spec:
             - name: kubeedge-database
               cluster:
                 certificate-authority: "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+                server: https://192.168.178.112:6443
             users:
             - name: kubeedge-database
               user:

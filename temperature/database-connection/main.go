@@ -102,6 +102,7 @@ func handleKube(event chan watch.Event, db database.Database) {
 				if err != nil {
 					klog.Errorf("could not insert data; err: %v\n", err)
 				}
+				klog.Infof("Inserted values: tt=%v Value=%d dev=%s Namespace=%s PropertyName=%s boolean=true \n", tt, twin.Reported.Value, dev.Name, dev.Namespace, twin.PropertyName)
 			}
 		case watch.Modified:
 			klog.Infof("handle modified event")
